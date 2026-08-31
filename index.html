@@ -3,47 +3,193 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>오목지면시그 게임 모음</title>
+<title>오목지면시그 게임 모음 · SOOP 스트리머 팬메이드 웹게임</title>
+<meta name="description" content="SOOP 스트리머를 소재로 만든 팬메이드 웹게임 6종 모음. 인생 시뮬레이션, 가상 주식 거래소, 가상 배팅 시장, 3D 방송 배경 뷰어, 실시간 멀티플레이 술래잡기, 광고 회피 게임을 브라우저에서 바로 즐길 수 있습니다.">
 <!-- AdSense 사이트 소유권 확인용 코드(2026-08-22) - neezu-crypto.github.io 도메인 검토 요청 시 발급받은
      스니펫. 애드센스 사이트 등록이 최상위 도메인 단위로만 가능해서, 이 저장소(계정 루트 페이지)에
      검증 스크립트가 있어야 한다. 이 저장소는 애드센스 검증용 + 형제 프로젝트 허브 역할만 한다. -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9754111045837093" crossorigin="anonymous"></script>
 <style>
-  :root { --bg:#14110c; --panel:#1e1a13; --text:#ece3d0; --text-dim:#9a8f78; --gold:#d4a24c; --line:#362f23; }
+  :root {
+    --bg:#14110c; --panel:#1e1a13; --panel-hover:#241f16; --text:#ece3d0; --text-dim:#9a8f78;
+    --gold:#d4a24c; --gold-dim:#8a713c; --line:#362f23; --badge-text:#14110c;
+  }
   @media (prefers-color-scheme: light) {
-    :root { --bg:#e7dfca; --panel:#f6f1e2; --text:#241f16; --text-dim:#6b6250; --gold:#9c6f22; --line:#d9cca5; }
+    :root {
+      --bg:#e7dfca; --panel:#f6f1e2; --panel-hover:#efe8d3; --text:#241f16; --text-dim:#6b6250;
+      --gold:#9c6f22; --gold-dim:#b8935a; --line:#d9cca5; --badge-text:#f6f1e2;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg:#14110c; --panel:#1e1a13; --panel-hover:#241f16; --text:#ece3d0; --text-dim:#9a8f78;
+    --gold:#d4a24c; --gold-dim:#8a713c; --line:#362f23; --badge-text:#14110c;
+  }
+  :root[data-theme="light"] {
+    --bg:#e7dfca; --panel:#f6f1e2; --panel-hover:#efe8d3; --text:#241f16; --text-dim:#6b6250;
+    --gold:#9c6f22; --gold-dim:#b8935a; --line:#d9cca5; --badge-text:#f6f1e2;
   }
   * { box-sizing: border-box; }
   html, body { margin:0; padding:0; background:var(--bg); color:var(--text); }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
-    line-height: 1.6; display:flex; justify-content:center; padding: 60px 20px;
+    line-height: 1.65;
   }
-  main { max-width: 480px; width: 100%; }
-  h1 { font-size: 22px; margin: 0 0 6px; }
-  p.pitch { color: var(--text-dim); font-size: 14px; margin: 0 0 28px; }
-  ul { list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px; }
+  main { max-width: 880px; margin: 0 auto; padding: 64px 24px 80px; }
+
+  header.hero { margin-bottom: 44px; }
+  p.eyebrow {
+    color: var(--gold); font-size: 12.5px; font-weight: 700; letter-spacing: 0.08em;
+    text-transform: uppercase; margin: 0 0 10px;
+  }
+  h1 { font-size: 28px; margin: 0 0 14px; letter-spacing: -0.01em; }
+  p.pitch { color: var(--text-dim); font-size: 15px; max-width: 62ch; margin: 0 0 4px; }
+
+  section.about {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+    padding: 20px 22px; margin: 28px 0 48px;
+  }
+  section.about h2 { font-size: 14px; margin: 0 0 10px; color: var(--gold); }
+  section.about p { font-size: 13.5px; color: var(--text-dim); margin: 0 0 8px; max-width: 66ch; }
+  section.about p:last-child { margin-bottom: 0; }
+
+  h2.section-title { font-size: 13px; color: var(--text-dim); letter-spacing: 0.06em; text-transform: uppercase; margin: 0 0 16px; }
+
+  ul.games { list-style:none; margin:0 0 40px; padding:0; display:grid; grid-template-columns: 1fr; gap: 14px; }
+  @media (min-width: 620px) { ul.games { grid-template-columns: 1fr 1fr; } }
+
+  li.game-card { position: relative; }
   a.game-link {
-    display:block; padding:13px 16px; background:var(--panel); border:1px solid var(--line);
-    border-radius:10px; color:var(--text); text-decoration:none; font-size:14.5px; font-weight:600;
-    transition: border-color 0.12s ease;
+    display:block; height:100%; background:var(--panel); border:1px solid var(--line);
+    border-radius: 14px; color:var(--text); text-decoration:none; overflow:hidden;
+    transition: border-color 0.14s ease, transform 0.14s ease, background 0.14s ease;
   }
-  a.game-link:hover { border-color: var(--gold); }
+  a.game-link:hover, a.game-link:focus-visible { border-color: var(--gold); background: var(--panel-hover); transform: translateY(-2px); }
+  a.game-link:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+  .game-thumb {
+    display:block; width:100%; aspect-ratio: 16 / 9; object-fit: cover;
+    background: var(--bg); border-bottom: 1px solid var(--line);
+  }
+  .game-body { padding: 16px 20px 18px; }
+
+  .badge {
+    display:inline-flex; align-items:center; justify-content:center; width:38px; height:38px;
+    border-radius: 9px; background: var(--gold); color: var(--badge-text); font-weight:800; font-size:13px;
+    margin-bottom: 12px; letter-spacing: -0.02em;
+  }
+  .game-title { font-size: 16.5px; font-weight: 700; margin: 0 0 6px; }
+  .game-desc { font-size: 13px; color: var(--text-dim); margin: 0 0 12px; }
+  .tags { display:flex; flex-wrap:wrap; gap:6px; }
+  .tag {
+    font-size: 11px; color: var(--gold-dim); border: 1px solid var(--line); border-radius: 999px;
+    padding: 3px 9px; white-space: nowrap;
+  }
+
+  a.station-link {
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    padding:15px 20px; background:transparent; border:1px dashed var(--line);
+    border-radius: 12px; color:var(--text); text-decoration:none; font-size:14px; font-weight:600;
+    transition: border-color 0.14s ease;
+  }
+  a.station-link:hover, a.station-link:focus-visible { border-color: var(--gold); }
+  a.station-link span.arrow { color: var(--gold); }
+
+  footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line); }
+  footer p { font-size: 12px; color: var(--text-dim); margin: 0; }
 </style>
 </head>
 <body>
 <main>
-  <h1>오목지면시그 게임 모음</h1>
-  <p class="pitch">SOOP 스트리머를 소재로 만든 팬메이드 웹게임들입니다.</p>
-  <ul>
-    <li><a class="game-link" href="https://neezu-crypto.github.io/streamer-life-game/">스트리머 인생게임</a></li>
-    <li><a class="game-link" href="https://neezu-crypto.github.io/soop-stock-market/index.html">스트리머 주식시장</a></li>
-    <li><a class="game-link" href="https://neezu-crypto.github.io/StreamBet-Market/">스트리머 배팅시장</a></li>
-    <li><a class="game-link" href="https://neezu-crypto.github.io/interior-3d-viewer/">스트리머 배경시장</a></li>
-    <li><a class="game-link" href="https://neezu-crypto.github.io/dont-click-ads/">절대 광고를 클릭하지 마</a></li>
-    <li><a class="game-link" href="https://neezu-crypto.github.io/midnight-mart-run/">미드나잇 마트런</a></li>
-    <li><a class="game-link" href="https://www.sooplive.com/station/skftodwocks2" target="_blank" rel="noopener noreferrer">방송국</a></li>
+  <header class="hero">
+    <p class="eyebrow">오목지면시그 · fan-made web games</p>
+    <h1>오목지면시그 게임 모음</h1>
+    <p class="pitch">SOOP 스트리머를 소재로 만든 팬메이드 웹게임 여섯 종을 한곳에 모았습니다. 설치 없이 브라우저에서 바로 즐길 수 있고, 전부 무료입니다.</p>
+  </header>
+
+  <section class="about">
+    <h2>이 사이트는 무엇인가요</h2>
+    <p>개인 개발자가 혼자 만들고 있는 SOOP 스트리머 팬 게임 프로젝트입니다. 인생 시뮬레이션부터 가상 주식·배팅 시장, 방송용 3D 배경 뷰어, 실시간 멀티플레이 술래잡기까지 장르가 다양합니다.</p>
+    <p>모든 게임은 게임 내에서만 쓰이는 가상 재화를 사용하며, 실제 현금으로 환전하거나 인출할 수 있는 기능은 없습니다.</p>
+  </section>
+
+  <h2 class="section-title">게임 목록</h2>
+  <ul class="games">
+    <li class="game-card">
+      <a class="game-link" href="https://neezu-crypto.github.io/streamer-life-game/">
+        <img class="game-thumb" src="assets/screenshots/streamer-life-game.jpg" alt="스트리머 인생게임 - 0세부터 100세까지 이어지는 인생 경로 일러스트" loading="lazy" decoding="async" width="800" height="450">
+        <div class="game-body">
+          <span class="badge">인생</span>
+          <p class="game-title">스트리머 인생게임</p>
+          <p class="game-desc">좋아하는 스트리머의 이름으로 주인공을 만들고 0세부터 100세까지 선택을 이어가는 텍스트 인생 시뮬레이션. 경찰·의사·변호사·트레이더·사기꾼 등 20개가 넘는 직업 루트와 결말 도감이 있고, 다른 유저가 진행 중인 게임에 실시간으로 함께할 수 있습니다.</p>
+          <div class="tags"><span class="tag">인생 시뮬레이션</span><span class="tag">멀티플레이</span><span class="tag">도감 수집</span></div>
+        </div>
+      </a>
+    </li>
+    <li class="game-card">
+      <a class="game-link" href="https://neezu-crypto.github.io/soop-stock-market/index.html">
+        <img class="game-thumb" src="assets/screenshots/soop-stock-market.jpg" alt="스트리머 주식시장 - 실제 거래 화면, 인기 TOP5·잭팟·복권함 UI" loading="lazy" decoding="async" width="800" height="450">
+        <div class="game-body">
+          <span class="badge">주식</span>
+          <p class="game-title">스트리머 주식시장</p>
+          <p class="game-desc">가상 재화 100만 원으로 시작해 좋아하는 스트리머 "종목"에 투자하는 가상 주식 거래소. 시세가 실시간으로 움직이고, 매일 총자산(현금+보유주식 평가액)이 캔들차트로 자동 기록됩니다.</p>
+          <div class="tags"><span class="tag">가상 투자</span><span class="tag">실시간 시세</span></div>
+        </div>
+      </a>
+    </li>
+    <li class="game-card">
+      <a class="game-link" href="https://neezu-crypto.github.io/StreamBet-Market/">
+        <img class="game-thumb" src="assets/screenshots/streambet-market.jpg" alt="스트리머 배팅시장 - 진행 중인 배팅 마켓과 인증 스트리머 목록" loading="lazy" decoding="async" width="800" height="450">
+        <div class="game-body">
+          <span class="badge">배팅</span>
+          <p class="game-title">스트리머 배팅시장</p>
+          <p class="game-desc">스트리머 방송 중 벌어지는 이벤트를 두고 가상 재화로 배팅하는 시장. 유저가 직접 배팅 주제를 제안할 수 있고, 매일 배팅에 참여하면 1/50 확률로 잭팟 전액에 도전하는 기회가 주어집니다.</p>
+          <div class="tags"><span class="tag">가상 배팅</span><span class="tag">유저 제안</span></div>
+        </div>
+      </a>
+    </li>
+    <li class="game-card">
+      <a class="game-link" href="https://neezu-crypto.github.io/interior-3d-viewer/">
+        <img class="game-thumb" src="assets/screenshots/interior-3d-viewer.jpg" alt="스트리머 배경시장 - 야간 불꽃놀이 프리셋을 적용한 3D 방송 배경" loading="lazy" decoding="async" width="800" height="450">
+        <div class="game-body">
+          <span class="badge">배경</span>
+          <p class="game-title">스트리머 배경시장</p>
+          <p class="game-desc">방송용 3D 배경을 꾸미고 둘러보는 뷰어. 갤러리에 게시된 프리셋을 바로 적용해보거나, OBS 브라우저 소스용 링크를 복사해 실제 방송 화면에 가져다 쓸 수 있습니다.</p>
+          <div class="tags"><span class="tag">3D 뷰어</span><span class="tag">방송 연동(OBS)</span></div>
+        </div>
+      </a>
+    </li>
+    <li class="game-card">
+      <a class="game-link" href="https://neezu-crypto.github.io/dont-click-ads/">
+        <img class="game-thumb" src="assets/screenshots/dont-click-ads.jpg" alt="절대 광고를 클릭하지 마 - 네온 타이틀 화면" loading="lazy" decoding="async" width="800" height="450">
+        <div class="game-body">
+          <span class="badge">광고</span>
+          <p class="game-title">절대 광고를 클릭하지 마</p>
+          <p class="game-desc">화면을 따라다니며 클릭을 유도하는 광고를 피해야 하는 게임. 몇 번이나 낚여서 클릭했는지가 기록되고, 전 세계 유저와 랭킹으로 비교됩니다. 잡히면 레벨 1부터 다시 시작.</p>
+          <div class="tags"><span class="tag">캐주얼</span><span class="tag">글로벌 랭킹</span></div>
+        </div>
+      </a>
+    </li>
+    <li class="game-card">
+      <a class="game-link" href="https://neezu-crypto.github.io/midnight-mart-run/">
+        <img class="game-thumb" src="assets/screenshots/midnight-mart-run.jpg" alt="미드나잇 마트런 - 방 만들기/코드 입장 로비 화면" loading="lazy" decoding="async" width="800" height="450">
+        <div class="game-body">
+          <span class="badge">마트</span>
+          <p class="game-title">미드나잇 마트런</p>
+          <p class="game-desc">한 명은 마트 주인, 최대 세 명은 도둑이 되어 겨루는 실시간 멀티플레이 술래잡기. 방 코드로 스트리머와 시청자가 함께 접속해, 주인은 도둑을 체포하고 도둑은 물건을 훔쳐 제한 시간 안에 출구로 탈출해야 합니다.</p>
+          <div class="tags"><span class="tag">실시간 멀티플레이</span><span class="tag">1 vs 3</span></div>
+        </div>
+      </a>
+    </li>
   </ul>
+
+  <h2 class="section-title">방송</h2>
+  <a class="station-link" href="https://www.sooplive.com/station/skftodwocks2" target="_blank" rel="noopener noreferrer">
+    SOOP 방송국 바로가기 <span class="arrow">→</span>
+  </a>
+
+  <footer>
+    <p>오목지면시그 · SOOP 스트리머 팬메이드 웹게임 모음 · 전 게임 무료 · 가상 재화만 사용, 현금 환전·인출 기능 없음</p>
+  </footer>
 </main>
 </body>
 </html>
